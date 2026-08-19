@@ -7,7 +7,7 @@ import model.entities.Student;
 public interface StudentDao {
 	public void insert(Student obj);
 	public void update(Student obj);
-	public void deleteById(Integer id);
+	public void deleteById(String id);
 	public Student findById(String id);
 	public List<Student> findAll();
 }
