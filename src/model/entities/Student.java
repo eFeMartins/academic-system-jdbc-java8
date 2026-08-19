@@ -28,6 +28,10 @@ public class Student {
 	public String getStudent_id() {
 		return student_id;
 	}
+	
+	public void setStudent_id(String student_id){
+		this.student_id = student_id;
+	}
 
 	public String getName() {
 		return name;
@@ -46,9 +50,16 @@ public class Student {
 	public LocalDate getEnrollmentDate() {
 		return enrollmentDate;
 	}
+	public void setEnrollmentDate(LocalDate enrollmentDate) {
+		this.enrollmentDate = enrollmentDate;
+	}
 
 	public List<TranscriptRecord> getTranscript() {
 		return transcript;
+	}
+	
+	public void setTranscript(List<TranscriptRecord> transcript) {
+		this.transcript = transcript;
 	}
 
 	@Override
@@ -67,6 +78,14 @@ public class Student {
 		Student other = (Student) obj;
 		return Objects.equals(student_id, other.student_id);
 	}
+
+	@Override
+	public String toString() {
+		return "Student [student_id=" + student_id + ", name=" + name + ", major=" + major + ", enrollmentDate="
+				+ enrollmentDate + ", transcript=" + transcript + "]";
+	}
+	
+	
 	
 	
 	
