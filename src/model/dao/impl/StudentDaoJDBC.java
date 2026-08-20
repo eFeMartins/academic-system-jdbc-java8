@@ -109,9 +109,9 @@ public class StudentDaoJDBC implements StudentDao {
 			if (rs.next()) {
 				student = new Student();
 
-				student.setStudent_id(rs.getNString("student_id"));
+				student.setStudent_id(rs.getString("student_id"));
 				student.setName(rs.getString("name"));
-				student.setMajor(rs.getNString("major"));
+				student.setMajor(rs.getString("major"));
 				student.setEnrollmentDate(rs.getDate("enrollment_date").toLocalDate());
 				student.setTranscript(null);
 				

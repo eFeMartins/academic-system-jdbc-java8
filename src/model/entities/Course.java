@@ -25,6 +25,10 @@ public class Course {
 	public String getCode() {
 		return code;
 	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public String getName() {
 		return name;
@@ -45,6 +49,10 @@ public class Course {
 	public List<Course> getPrerequisites() {
 		return prerequisites;
 	}
+	
+	public void setPrerequisites(List<Course> prerequisites) {
+		this.prerequisites = prerequisites;
+	}
 
 	@Override
 	public int hashCode() {
@@ -61,6 +69,12 @@ public class Course {
 			return false;
 		Course other = (Course) obj;
 		return Objects.equals(code, other.code);
+	}
+
+	@Override
+	public String toString() {
+		return "Course [code=" + code + ", name=" + name + ", credits=" + credits + ", prerequisites=" + prerequisites
+				+ "]";
 	}
 
 	
