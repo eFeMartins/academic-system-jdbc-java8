@@ -138,7 +138,11 @@ public class TranscriptRecordDaoJDBC implements TranscriptRecordDao {
 				TranscriptRecord aux = new TranscriptRecord();
 				aux.setCourse(DaoFactory.createCourseDao().findById(rs.getString("course_code"))); 
 				aux.setFinalGrade(rs.getDouble("final_grade"));
-				aux.setApprovalStatus(ApprovalStatus.valueOf(rs.getString("approval_status")));
+				
+				String statusDb = rs.getString("approval_status");
+				if (statusDb != null) {
+				    aux.setApprovalStatus(ApprovalStatus.valueOf(statusDb.trim().toUpperCase()));
+				}
 				
 				list.add(aux);
 			}

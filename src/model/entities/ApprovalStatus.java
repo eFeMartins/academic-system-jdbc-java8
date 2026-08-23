@@ -4,6 +4,6 @@ public enum ApprovalStatus {
 	APPROVED,
 	FAILED,
 	IN_PROGRESS,
-	WITHDRAMN;
+	WITHDRAWN;
 	
 }

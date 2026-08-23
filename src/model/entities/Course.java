@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class Course {
 	private String name;
 	private int credits;
 	
-	private List<Course> prerequisites;
+	private List<Course> prerequisites = new ArrayList<>();
 	
 	public Course() {
 		

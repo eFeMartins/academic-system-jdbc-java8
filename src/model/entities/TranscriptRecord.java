@@ -53,5 +53,12 @@ public class TranscriptRecord {
 		TranscriptRecord other = (TranscriptRecord) obj;
 		return Objects.equals(course, other.course);
 	}
+	@Override
+	public String toString() {
+		return "TranscriptRecord [course=" + course + ", finalGrade=" + finalGrade + ", approvalStatus="
+				+ approvalStatus + "]";
+	}
+	
+	
 	
 }
