@@ -71,8 +71,7 @@ public class Program {
 //
 //				List<Course> prereqs = new ArrayList<>();
 //				prereqs.add(baseCourse);
-//				Course advancedCourse = new Course("COMP12"
-//						+ "", "Orientacao a Objetos", 4, prereqs);
+//				Course advancedCourse = new Course("COMP12", "Orientacao a Objetos", 4, prereqs);
 //				
 //				courseDao.insert(advancedCourse);
 //				System.out.println("Curso avancado inserido com dependencias: " + advancedCourse.getCode());

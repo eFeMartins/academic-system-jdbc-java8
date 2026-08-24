@@ -61,13 +61,14 @@ public class CourseDaoJDBC implements CourseDao{
 		try {
 			st = conn.prepareStatement(
 					"UPDATE course "
-							+ "SET "
-							+ "name = ?, "
+							+ "SET name = ?, "
 							+ "credits = ? "
+							+ "WHERE code = ?"
 					);
 			
 			st.setString(1, obj.getName());
 			st.setInt(2, obj.getCredits());
+			st.setString(2, obj.getCode());
 			
 			st.executeUpdate();
 			
