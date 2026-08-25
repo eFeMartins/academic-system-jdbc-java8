@@ -112,7 +112,9 @@ public class CourseDaoJDBC implements CourseDao{
 	    ResultSet rsPre = null;
 
 	    try {
-	        st = conn.prepareStatement("SELECT * FROM course WHERE code = ?");
+	        st = conn.prepareStatement("SELECT * FROM course "
+	        		+ "WHERE code = ?"
+	        		);
 	        st.setString(1, code);
 	        rs = st.executeQuery();
 

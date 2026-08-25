@@ -9,5 +9,7 @@ public interface TranscriptRecordDao {
 	public void update(TranscriptRecord obj, String student_id);
 	public void deleteById(String student_id, String course_code);
 	public TranscriptRecord findById(String student_id, String course_code);
+	public List<TranscriptRecord> findByStudent(String studentId);
+	public List<TranscriptRecord> findByCourse(String course_code);
 	public List<TranscriptRecord> findAll();
 }

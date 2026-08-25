@@ -31,7 +31,11 @@ public class TranscriptRecordDaoJDBC implements TranscriptRecordDao {
 					);
 			st.setString(1, student_id);
 			st.setString(2, obj.getCourse().getCode());
-			st.setDouble(3, obj.getFinalGrade());
+			if (obj.getFinalGrade() != null) {
+			    st.setDouble(3, obj.getFinalGrade());
+			} else {
+			    st.setNull(3, java.sql.Types.DOUBLE);
+			}
 			st.setString(4, obj.getApprovalStatus().name());
 			
 			st.executeUpdate();	
@@ -53,7 +57,11 @@ public class TranscriptRecordDaoJDBC implements TranscriptRecordDao {
 					+ "WHERE student_id = ? AND course_code = ?"
 				);
 				
-		st.setDouble(1, obj.getFinalGrade());
+			if (obj.getFinalGrade() != null) {
+			    st.setDouble(1, obj.getFinalGrade());
+			} else {
+			    st.setNull(1, java.sql.Types.DOUBLE);
+			}
 		st.setString(2, obj.getApprovalStatus().name());
 		st.setString(3, student_id);
 		st.setString(4, obj.getCourse().getCode());
@@ -119,6 +127,87 @@ public class TranscriptRecordDaoJDBC implements TranscriptRecordDao {
 		}
 		
 	};
+	
+	public List<TranscriptRecord> findByStudent(String studentId){
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		List<TranscriptRecord> list = new ArrayList<>();
+
+		
+		try {
+			
+			st = conn.prepareStatement(
+						"SELECT * FROM transcript_record "
+						+ "WHERE student_id = ?"
+					);
+			
+			st.setString(1, studentId);
+			rs = st.executeQuery();
+			
+			while (rs.next()) {
+				TranscriptRecord aux = new TranscriptRecord();
+				aux.setCourse(DaoFactory.createCourseDao().findById(rs.getString("course_code"))); 
+				aux.setFinalGrade(rs.getDouble("final_grade"));
+				
+				String statusDb = rs.getString("approval_status");
+				if (statusDb != null) {
+				    aux.setApprovalStatus(ApprovalStatus.valueOf(statusDb.trim().toUpperCase()));
+				}
+				
+				list.add(aux);
+			}
+			return list;
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage()); 
+		}finally{
+			DB.closeResultSet(rs);
+		    DB.closeStatement(st);
+		}
+		
+	};
+	
+	public List<TranscriptRecord> findByCourse(String course_code){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		List<TranscriptRecord> list = new ArrayList<>();
+
+		
+		try {
+			
+			st = conn.prepareStatement(
+						"SELECT * FROM transcript_record "
+						+ "WHERE course_code = ?"
+					);
+			
+			st.setString(1, course_code);
+			rs = st.executeQuery();
+			
+			while (rs.next()) {
+				TranscriptRecord aux = new TranscriptRecord();
+				aux.setCourse(DaoFactory.createCourseDao().findById(rs.getString("course_code"))); 
+				aux.setFinalGrade(rs.getDouble("final_grade"));
+				
+				String statusDb = rs.getString("approval_status");
+				if (statusDb != null) {
+				    aux.setApprovalStatus(ApprovalStatus.valueOf(statusDb.trim().toUpperCase()));
+				}
+				
+				list.add(aux);
+			}
+			return list;
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage()); 
+		}finally{
+			DB.closeResultSet(rs);
+		    DB.closeStatement(st);
+		}
+	};
+	
 	public List<TranscriptRecord> findAll(){
 		PreparedStatement st = null;
 		ResultSet rs = null;
